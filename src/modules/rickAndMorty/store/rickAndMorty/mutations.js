@@ -5,15 +5,20 @@
 
  export const setCharacters = ( state, characters ) =>
  {
-  state.characters = [...state.characters, ...characters ]
-  console.log(state.characters);
-  state.isLoading = false;
+  state.characters = [...characters ]
  }
 
-export const updateEntry = (/* state */ ) => {
-
+export const setFilters = ( state, payload) =>
+{
+ const { name, status } = payload;
+ state.name = name;
+ state.status = status;
 }
 
-export const createEntry = (/* state */ ) => {
+export const isLoading = (state) => {
+ state.isLoading = true;
+}
 
+export const isLoaded = (state) => {
+ state.isLoading = false;
 }

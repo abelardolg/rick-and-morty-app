@@ -8,10 +8,10 @@
     </div>
   </div>
 
-  <div class="container text-center">
+  <div v-else class="container text-center">
     <div class="row">
       <RickAndMortyCharacter
-        v-for="character in charactersByTerm"
+        v-for="character in characters"
         :character="character"
         :key="character.id"
       />
@@ -21,7 +21,7 @@
 
 <script>
 import {defineAsyncComponent} from "vue";
-import {mapActions, mapGetters, mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "RickAndMortyList",
@@ -35,12 +35,14 @@ export default {
     this.loadCharacters()
   },
   computed: {
-    ...mapGetters("rickAndMorty", ["getCharactersByTerm"]),
-    charactersByTerm() {
-      return this.getCharactersByTerm( this.term )
+    // ...mapGetters("rickAndMorty", ["getCharacters"]),
+    characters() {
+      return this.getCharacters();
     },
-    ...mapState("rickAndMorty", ["isLoading"])
+    ...mapState("rickAndMorty", ["isLoading"]),
+    ...mapState("rickAndMorty", ["characters"])
   }
+
 }
 </script>
 
