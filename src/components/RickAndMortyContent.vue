@@ -1,7 +1,6 @@
 <template>
   <RickAndMortyFilter />
-  <RickAndMortyList />
-
+  <RickAndMortyList/>
 </template>
 
 <script>
@@ -12,8 +11,7 @@ export default {
   components: {
     RickAndMortyFilter: defineAsyncComponent( () => import("@/components/RickAndMortyFilter.vue")),
     RickAndMortyList: defineAsyncComponent( () => import("@/components/RickAndMortyList.vue"))
-  }
-
+  },
 }
 </script>
 

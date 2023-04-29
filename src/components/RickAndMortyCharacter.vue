@@ -1,18 +1,20 @@
 <template>
-  <div class="col-12 col-sm-6 col-md-3">
-    <div class="box">
+  <div class="col-sm-12 col-md-4 col-lg-6 ">
+        <div class="box">
       <div class="card">
         <div class="card-img-actions m-1">
-          <img class="card-img img-fluid" src="https://rickandmortyapi.com/api/character/avatar/55.jpeg" alt="">
+          <img class="card-img img-fluid"
+               :src="character.image" alt="">
         </div>
         <div class="card-body content">
           <div class="d-flex align-items-start flex-nowrap ">
             <div>
-              <h3 class="fw-bold me-2">Celebrity Jerry</h3>
+              <h3 class="fw-bold me-2">{{ character.name }}</h3>
               <p>
-              <i class="fa fa-circle text-danger fa-light"></i>
+              <i class="fa fa-circle fa-light mb-3"
+                 :class="`text-${statusColor}`"></i>
               <span class="text-white">
-                Dead - Human
+                {{ character.status }} - {{ character.specie }}
               </span>
               </p>
               <p>
@@ -20,7 +22,7 @@
               </p>
               <p>
               <span class="text-white">
-                Dead - Human
+                {{ this.character.status }} - Human
               </span>
               </p>
               <p>
@@ -38,19 +40,34 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "RickAndMortyCharacter"
+  name: "RickAndMortyCharacter",
+  props: {
+    character: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    statusColor() {
+      const statuses = {"dead": "danger", "alive": "success", "unknown": "primary"};
+
+      const status = this.character.status;
+
+      return statuses[status.toLowerCase()];
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 
 .content {
-
+  max-width: 800px;
   background-color: rgb(158, 158, 158,);
   h3 {
     color: white;
